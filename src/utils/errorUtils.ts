@@ -23,22 +23,22 @@ export function errorTypeToStatusCode(type: AppErrorTypes) {
   return 400;
 }
 
-export function badRequestError(message?: string): AppError {
+export function badRequestError(message?: any): AppError {
   return { type: "bad_request", message };
 }
 
-export function conflictError(message?: string): AppError {
+export function conflictError(message?: any): AppError {
   return { type: "conflict", message };
 }
 
-export function notFoundError(message?: string): AppError {
+export function notFoundError(message?: any): AppError {
   return { type: "not_found", message };
 }
 
-export function unauthorizedError(message?: string): AppError {
+export function unauthorizedError(message?: any): AppError {
   return { type: "unauthorized", message };
 }
 
-export function wrongSchemaError(message?: string): AppError {
+export function wrongSchemaError(message?: any): AppError {
   return { type: "wrong_schema", message };
 }

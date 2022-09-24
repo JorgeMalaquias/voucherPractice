@@ -10,16 +10,19 @@ export interface VoucherApplyData {
   amount: number;
 }
 
-async function createVoucher(code: string, discount: number) {
+export async function createVoucher(code: string, discount: number) {
   const voucher = await voucherRepository.getVoucherByCode(code);
   if (voucher) {
+    
     throw conflictError('Voucher already exist.');
   }
 
   await voucherRepository.createVoucher(code, discount);
 }
 
-async function applyVoucher(code: string, amount: number) {
+
+
+export async function applyVoucher(code: string, amount: number) {
   const voucher = await voucherRepository.getVoucherByCode(code);
   if (!voucher) {
     throw conflictError('Voucher does not exist.');
@@ -39,22 +42,16 @@ async function applyVoucher(code: string, amount: number) {
   };
 }
 
-async function changeVoucherToUsed(code: string) {
+export async function changeVoucherToUsed(code: string) {
   return await voucherRepository.useVoucher(code);
 }
 
-function isAmountValidForDiscount(amount: number) {
+export function isAmountValidForDiscount(amount: number) {
   return amount >= MIN_VALUE_FOR_DISCOUNT;
 }
 
-function applyDiscount(value: number, discount: number) {
+export function applyDiscount(value: number, discount: number) {
   return value - value * (discount / 100);
 }
 
-export default {
-  createVoucher,
-  applyVoucher,
-  changeVoucherToUsed,
-  isAmountValidForDiscount,
-  applyDiscount
-};
+

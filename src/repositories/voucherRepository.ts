@@ -19,8 +19,8 @@ function useVoucher(code: string) {
   });
 }
 
-export default {
+export default{
   getVoucherByCode,
   createVoucher,
   useVoucher
-};
+}
